@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Workr.</title>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="flapperNews">
+
+    <div ng-controller="MainCtrl">
+      
+      <div class="row">
+        
+        <div class="col-md-6 col-md-offset-3">   
+          <ui-view></ui-view>   
+        </div>
+      
+      </div>
+
+      <script type="text/ng-template" id="/home.html">
+        
+        <div class="page-header">
+          <h1>Workr - Powered by Indeed.</h1>
+          <p>Enter a keyword and a location below to begin.</p>
+        </div>
+      
+        <form novalidate class="simple-form" ng-submit="getJobs()" style="margin-top:30px;">
+          
+          <div class="form-group">
+          <input type="text" class="form-control" placeholder="Job Keyword" ng-model="keyword" /><br />
+          </div>
+
+          <div class="form-group">
+          <input type="text" ng-model="location" class="form-control" placeholder="City or Zipcode"/><br />
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Search</button>
+        
+        </form>      
+
+        <p style="font-size:20px; margin-left:10px;">{{message}}</p>
+
+        <ul ng-repeat="jobResult in jobResults">
+
+          <span style="font-size:20px; margin-left:10px;">
+          <li>Title: {{jobResult.jobtitle}}</li>
+          <li>Company: {{jobResult.company}}</li>
+          <li>Location: {{jobResult.formattedLocation}}</li>
+          <li>Date: {{jobResult.date}} ({{jobResult.formattedRelativeTime}})</li>
+          <li>Preview: <div ng-bind-html="jobResult.snippet"></div></li>
+          <li><a href={{jobResult.url}} target="_blank">Learn More at Indeed.</a></li>
+          <br>
+          <br>          
+          </span>
+
+        </ul>
+
+    </script>
+
+    <span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="https://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.js"></script> <!-- Used for rendering bold tags in job search results -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script src="https://www.l2.io/ip.js?var=userip"></script> <!-- Script to obtain user ip address - this only needs to be fetched once per session (the ip wont change during a session). This version of the script supports only IPV4 answers - remove the 'www.' to allow IPV6. -->
+    <script src="/javascripts/angularApp.js"></script>  
+  </body>
+</html>
