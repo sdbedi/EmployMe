@@ -25,13 +25,15 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
     $scope.ip = userip;
 
     let jobSearchURL = 'search/' + $scope.location + '/' + $scope.keyword + '/' + $scope.ip + '/' + Date()
+    let location = $scope.location
+    let keyword = $scope.keyword
     $http.get(jobSearchURL).then(function(results) {
       console.log("recieved jobs", results.data);
       $scope.jobResults = results.data;
       if ($scope.jobResults.length === 0) {
         $scope.message = 'No jobs found. Please check your search terms and try again.';
       } else {
-        $scope.message = ''
+        $scope.message = "Showing results for '" + keyword + "' in '" + location + "'."
       };
     }, function(e) {
       alert("error", e);
