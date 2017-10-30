@@ -18,7 +18,7 @@ router.get('/search/:location/:keyword/:ipAddress/:timestamp', function(req, res
       //res.json(search);
     });
     
-    axios.get('http://api.indeed.com/ads/apisearch?publisher=7248052928136281&format=json&q='+ req.params.keyword + '&l=' + req.params.location + '&sort=date&radius=25&st=&jt=&start=&limit=15&fromage=30&filter=&latlong=1&co=us&chnl=FJR&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2')
+    axios.get('http://api.indeed.com/ads/apisearch?publisher=&format=json&q='+ req.params.keyword + '&l=' + req.params.location + '&sort=date&radius=25&st=&jt=&start=&limit=15&fromage=30&filter=&latlong=1&co=us&chnl=FJR&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2')
     .then(function(response){
       console.log(response.data.results); // ex.: { user: 'Your User'}
       console.log(response.status); // ex.: 200
